@@ -72,6 +72,21 @@ app.use('/api', async (req, res, next) => {
       res.status(403).json({ error: 'Your Google account is not an authorized TailorMail operator.' });
       return;
     }
+    // Viewer access is read-only. Campaigns and billing require explicit permission.
+    const writes = ['POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method);
+    if (writes && operator.role === 'Viewer') {
+      res.status(403).json({ error: 'Viewer access is read-only.' });
+      return;
+    }
+    const requiredPermission = req.path.startsWith('/gmail/send') ? 'outbound_dispatch'
+      : req.path.startsWith('/icp/discover') || req.path.startsWith('/leads/import-csv') ? 'icp_discovery'
+      : req.path.startsWith('/email/handle-question') ? 'sales_qa'
+      : req.path.startsWith('/invoices/') ? 'billing' : null;
+    if (writes && requiredPermission && operator.role !== 'Owner' &&
+        !(Array.isArray(operator.permissions) && operator.permissions.includes(requiredPermission))) {
+      res.status(403).json({ error: 'You do not have permission to perform this operation.' });
+      return;
+    }
     (req as any).operatorEmail = identity.email;
     (req as any).operator = operator;
     next();
@@ -720,6 +735,15 @@ app.get('/api/state', async (_req, res) => {
 app.put('/api/state', async (req, res) => {
   if (req.body.teamMembers !== undefined) {
     return res.status(403).json({ error: 'Team permissions can only be managed through the owner-only team endpoint.' });
+  }
+  if (req.body.invoices !== undefined) {
+    const existing = await loadStoreAsync();
+    if (!Array.isArray(req.body.invoices) || req.body.invoices.some((invoice: any) => {
+      const previous = existing.invoices.find((item: any) => item.id === invoice.id);
+      return invoice.status === 'Paid' && previous?.status !== 'Paid';
+    })) {
+      return res.status(403).json({ error: 'Invoices cannot be marked paid without verified processor confirmation.' });
+    }
   }
   const current = await loadStoreAsync();
   const updated: StoreShape = {
