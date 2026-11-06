@@ -1,3 +1,4 @@
+import { apiFetch } from '../services/apiFetch';
 import React, { useState, useRef } from 'react';
 import {
   AlertCircle,
@@ -126,7 +127,7 @@ export const IcpOutboundView: React.FC<IcpOutboundViewProps> = ({
         }
 
         try {
-          const res = await fetch('/api/leads/import-csv', {
+          const res = await apiFetch('/api/leads/import-csv', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -170,7 +171,7 @@ export const IcpOutboundView: React.FC<IcpOutboundViewProps> = ({
     setIsScanning(true);
     setScanError(null);
     try {
-      const response = await fetch('/api/icp/discover', {
+      const response = await apiFetch('/api/icp/discover', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -206,7 +207,7 @@ export const IcpOutboundView: React.FC<IcpOutboundViewProps> = ({
     setScanError(null);
 
     try {
-      const response = await fetch('/api/icp/discover', {
+      const response = await apiFetch('/api/icp/discover', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -239,7 +240,7 @@ export const IcpOutboundView: React.FC<IcpOutboundViewProps> = ({
     e.preventDefault();
     if (!manualName.trim() || !manualEmail.trim()) return;
     try {
-      const res = await fetch('/api/webhooks/inbound-lead', {
+      const res = await apiFetch('/api/webhooks/inbound-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -276,7 +277,7 @@ export const IcpOutboundView: React.FC<IcpOutboundViewProps> = ({
     setIsSyncingGmail(true);
     setSendError(null);
     try {
-      const res = await fetch('/api/gmail/sync', {
+      const res = await apiFetch('/api/gmail/sync', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -309,7 +310,7 @@ export const IcpOutboundView: React.FC<IcpOutboundViewProps> = ({
     setIsTailoring(true);
     setSendError(null);
     try {
-      const response = await fetch('/api/email/tailor', {
+      const response = await apiFetch('/api/email/tailor', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -402,7 +403,7 @@ export const IcpOutboundView: React.FC<IcpOutboundViewProps> = ({
     setIsSendingGmail(true);
     setSendError(null);
     try {
-      const res = await fetch('/api/gmail/send', {
+      const res = await apiFetch('/api/gmail/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -454,7 +455,7 @@ export const IcpOutboundView: React.FC<IcpOutboundViewProps> = ({
     setIsAnsweringQuestion(true);
     setSendError(null);
     try {
-      const response = await fetch('/api/email/handle-question', {
+      const response = await apiFetch('/api/email/handle-question', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

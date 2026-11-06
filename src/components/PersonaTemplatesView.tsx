@@ -1,3 +1,4 @@
+import { apiFetch } from '../services/apiFetch';
 import React, { useRef, useState } from 'react';
 import {
   Check,
@@ -103,7 +104,7 @@ export const PersonaTemplatesView: React.FC<PersonaTemplatesViewProps> = ({
           try {
             const dataUrl = String(reader.result || '');
             const base64 = dataUrl.split(',')[1] || '';
-            const res = await fetch('/api/upload/parse-document', {
+            const res = await apiFetch('/api/upload/parse-document', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
@@ -160,7 +161,7 @@ export const PersonaTemplatesView: React.FC<PersonaTemplatesViewProps> = ({
     setIsSynthesizing(true);
     setErrorMessage(null);
     try {
-      const response = await fetch('/api/persona/extract-templates', {
+      const response = await apiFetch('/api/persona/extract-templates', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
