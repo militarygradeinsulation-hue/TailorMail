@@ -29,6 +29,59 @@ const PORT = Number(process.env.PORT) || 3000;
 
 app.use(express.json({ limit: '30mb' }));
 
+// All workspace APIs are private. Gmail's OAuth token is checked with Google,
+// then bound to an explicitly authorized operator in this workspace.
+const operatorTokenCache = new Map<string, { email: string; expires: number }>();
+app.use('/api', async (req, res, next) => {
+  if (req.path.startsWith('/track/open/')) return next();
+  const authorization = req.headers.authorization || '';
+  if (!authorization.startsWith('Bearer ')) {
+    res.status(401).json({ error: 'Sign in with an authorized Google account.' });
+    return;
+  }
+  const token = authorization.slice(7);
+  try {
+    let identity = operatorTokenCache.get(token);
+    if (!identity || identity.expires <= Date.now()) {
+      const reply = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!reply.ok) {
+        res.status(401).json({ error: 'Google session has expired. Sign in again.' });
+        return;
+      }
+      const details: any = await reply.json();
+      if (!details.email_verified || typeof details.email !== 'string') {
+        res.status(403).json({ error: 'A verified Google email is required.' });
+        return;
+      }
+      identity = { email: details.email.toLowerCase(), expires: Date.now() + 60_000 };
+      operatorTokenCache.set(token, identity);
+      if (operatorTokenCache.size > 100) {
+        for (const [key, value] of operatorTokenCache) {
+          if (value.expires <= Date.now()) operatorTokenCache.delete(key);
+        }
+      }
+    }
+    const store = await loadStoreAsync();
+    const operator = store.teamMembers.find((member: any) =>
+      String(member.email).toLowerCase() === identity!.email &&
+      member.status !== 'Pending Invitation'
+    );
+    if (!operator) {
+      res.status(403).json({ error: 'Your Google account is not an authorized TailorMail operator.' });
+      return;
+    }
+    (req as any).operatorEmail = identity.email;
+    (req as any).operator = operator;
+    next();
+  } catch (error) {
+    console.error('Operator authentication failed:', error);
+    res.status(503).json({ error: 'Unable to verify operator session.' });
+  }
+});
+
+
 // Persistent JSON file store fallback + Cloud SQL dual synchronization
 const DATA_DIR = path.resolve(__dirname, 'data');
 const STORE_PATH = path.join(DATA_DIR, 'workspace_store.json');
@@ -665,6 +718,9 @@ app.get('/api/state', async (_req, res) => {
 });
 
 app.put('/api/state', async (req, res) => {
+  if (req.body.teamMembers !== undefined) {
+    return res.status(403).json({ error: 'Team permissions can only be managed through the owner-only team endpoint.' });
+  }
   const current = await loadStoreAsync();
   const updated: StoreShape = {
     businessContext: req.body.businessContext ?? current.businessContext,
@@ -674,7 +730,7 @@ app.put('/api/state', async (req, res) => {
     leads: req.body.leads ?? current.leads,
     invoices: req.body.invoices ?? current.invoices,
     notifications: req.body.notifications ?? current.notifications,
-    teamMembers: req.body.teamMembers ?? current.teamMembers,
+    teamMembers: current.teamMembers,
   };
   await saveStoreAsync(updated);
   res.json(updated);
@@ -687,6 +743,9 @@ app.get('/api/team', async (_req, res) => {
 });
 
 app.post('/api/team/invite', async (req, res) => {
+  if ((req as any).operator.role !== 'Owner') {
+    return res.status(403).json({ error: 'Only the workspace owner can authorize operators.' });
+  }
   try {
     const { email, name, role, permissions } = req.body;
     if (!email) {
@@ -1035,7 +1094,7 @@ app.post('/api/leads/import-csv', async (req, res) => {
                   : 12000,
             };
           })
-          .filter((l: any) => l.fullName || l.company || l.email);
+          .filter((l: any) => /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(l.email || ''));
       }
     }
 
@@ -1058,7 +1117,7 @@ app.post('/api/leads/import-csv', async (req, res) => {
         role: item.role || 'Executive Decision Maker',
         company: companyClean,
         companyDomain: domain,
-        email: item.email || `contact@${domain}`,
+        email: item.email,
         location: item.location || 'United States',
         latitude: item.latitude || coords.latitude,
         longitude: item.longitude || coords.longitude,
@@ -1076,7 +1135,7 @@ app.post('/api/leads/import-csv', async (req, res) => {
         status: 'Discovered' as const,
         cadenceMode: 'timed_sequence' as const,
         timedIntervalDays: 3,
-        autoHandleQuestions: true,
+        autoHandleQuestions: false,
         tailoredSubject: `${companyClean}'s quote-to-order handoff & operational exceptions`,
         tailoredBody: `Hi ${firstName},\n\nA business is a reflection of the decisions, relationships, and systems operating inside it. In operations where quoting, scheduling, and billing live across separate tools, handoff exceptions can accumulate quickly.\n\nAt Aetheris Technology, we examine where friction occurs between departments before proposing software.\n\nWould you be open to a 15-minute review of your current quote-to-cash workflow?\n\nRespectfully,\nJoseph Toney\nFounder & CEO, Aetheris Technology\nArchitect of Mindprint\nhttps://aetheris.technology`,
         followUpSteps: [
@@ -2130,49 +2189,12 @@ app.post('/api/webhooks/inbound-lead', async (req, res) => {
 });
 
 // 9. Real Invoice Checkout Settlement Endpoint
-app.post('/api/invoices/:id/pay', async (req, res) => {
-  const { id } = req.params;
-  const store = await loadStoreAsync();
-  const invIdx = store.invoices.findIndex((inv) => inv.id === id);
-  if (invIdx === -1) {
-    return res.status(404).json({ error: 'Invoice not found.' });
-  }
-
-  const nowLabel = new Date().toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit',
+// Never mark an invoice paid based on an unverified browser request.
+// A real payment processor checkout and signed webhook must be configured first.
+app.post('/api/invoices/:id/pay', (_req, res) => {
+  res.status(501).json({
+    error: 'Payment processing is not configured. This action cannot settle an invoice.',
   });
-  const txRef = `TX-${Math.random().toString(36).substring(2, 10).toUpperCase()}`;
-
-  const inv = store.invoices[invIdx];
-  inv.status = 'Paid';
-  inv.paidAt = `${new Date().toLocaleDateString()} ${nowLabel}`;
-  inv.transactionRef = txRef;
-  store.invoices[invIdx] = inv;
-
-  // Also mark associated lead as Converted
-  if (inv.leadId) {
-    store.leads = store.leads.map((l) =>
-      l.id === inv.leadId ? { ...l, status: 'Converted' } : l
-    );
-  }
-
-  const notif = {
-    id: `notif-pay-${Date.now()}`,
-    leadId: inv.leadId || '',
-    leadName: inv.clientName,
-    company: inv.company,
-    role: 'Billing Contact',
-    eventType: 'Invoice Paid',
-    summary: `Invoice ${inv.invoiceNumber} ($${Number(inv.amount).toLocaleString()}) settled via ${inv.gateway} · Ref ${txRef}`,
-    timestamp: nowLabel,
-    unread: true,
-  };
-  store.notifications = [notif, ...store.notifications];
-  await saveStoreAsync(store);
-  broadcastEvent('notification', { notification: notif, state: store });
-
-  res.json({ invoice: inv, state: store });
 });
 
 async function startServer() {
