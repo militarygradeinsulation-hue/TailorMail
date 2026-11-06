@@ -101,7 +101,8 @@ export const BillingGatewaysView: React.FC<BillingGatewaysViewProps> = ({
   };
 
   const handleCopyPaymentLink = (inv: InvoiceRecord) => {
-    navigator.clipboard.writeText(getCheckoutUrl(inv));
+    window.alert('Checkout links are disabled until a verified payment gateway is connected.');
+    return;
     setCopiedInvoiceId(inv.id);
     setTimeout(() => setCopiedInvoiceId(null), 1800);
   };
@@ -110,9 +111,9 @@ export const BillingGatewaysView: React.FC<BillingGatewaysViewProps> = ({
     if (!invoiceToEmail || !accessToken) return;
     setIsSendingInvoiceEmail(true);
     try {
-      const checkoutUrl = getCheckoutUrl(invoiceToEmail);
+      const checkoutUrl = '';
       const subject = `Invoice ${invoiceToEmail.invoiceNumber} — ${invoiceToEmail.planOrService}`;
-      const body = `Hi ${invoiceToEmail.clientName.split(' ')[0]},\n\nPlease find your invoice details below:\n\nInvoice Number: ${invoiceToEmail.invoiceNumber}\nScope: ${invoiceToEmail.planOrService}\nAmount Due: $${invoiceToEmail.amount.toLocaleString()}.00 (${invoiceToEmail.billingCycle})\nPayment Gateway: ${invoiceToEmail.gateway}\nDue Date: ${invoiceToEmail.dueDate}\n\nComplete Instant Settlement:\n${checkoutUrl}\n\nThank you for your business.`;
+      const body = `Hi ${invoiceToEmail.clientName.split(' ')[0]},\n\nPlease find your invoice details below:\n\nInvoice Number: ${invoiceToEmail.invoiceNumber}\nScope: ${invoiceToEmail.planOrService}\nAmount Due: $${invoiceToEmail.amount.toLocaleString()}.00 (${invoiceToEmail.billingCycle})\nPayment Gateway: ${invoiceToEmail.gateway}\nDue Date: ${invoiceToEmail.dueDate}\n\nPayment instructions will be provided separately after a secure payment gateway is configured.\n\nThank you for your business.`;
 
       const res = await apiFetch('/api/gmail/send', {
         method: 'POST',
@@ -398,7 +399,7 @@ export const BillingGatewaysView: React.FC<BillingGatewaysViewProps> = ({
           <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
             <div>
               <h2 className="text-base font-semibold text-slate-900 dark:text-white">
-                Connected Payment Gateways
+                Payment Methods (Not Connected)
               </h2>
               <p className="text-xs text-slate-500 dark:text-slate-400">
                 Select default settlement rail embedded into outgoing closing emails
@@ -406,7 +407,7 @@ export const BillingGatewaysView: React.FC<BillingGatewaysViewProps> = ({
             </div>
             <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-700 dark:text-emerald-400">
               <ShieldCheck className="w-4 h-4" />
-              Encrypted Checkout Links
+              Payment setup required
             </span>
           </div>
 
@@ -451,7 +452,7 @@ export const BillingGatewaysView: React.FC<BillingGatewaysViewProps> = ({
                         active ? 'text-emerald-300' : 'text-emerald-700 dark:text-emerald-400'
                       }`}
                     >
-                      {active ? 'Default Rail' : 'Active'}
+                      {'Not Connected'}
                     </span>
                   </div>
                   <p className="text-sm font-semibold">{gw.name}</p>
@@ -636,7 +637,7 @@ export const BillingGatewaysView: React.FC<BillingGatewaysViewProps> = ({
                           ) : (
                             <>
                               <Copy className="w-3 h-3" />
-                              Checkout URL
+                              Not Configured
                             </>
                           )}
                         </button>
@@ -653,7 +654,7 @@ export const BillingGatewaysView: React.FC<BillingGatewaysViewProps> = ({
                             ) : (
                               <RefreshCw className="w-3 h-3" />
                             )}
-                            Settle Charge
+                            Unavailable
                           </button>
                         ) : (
                           <span className="inline-flex items-center gap-1 text-emerald-700 dark:text-emerald-400 font-medium px-2">
