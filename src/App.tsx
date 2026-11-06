@@ -152,7 +152,7 @@ export default function App() {
     }
   };
 
-  // 1. Initialize Firebase Auth + Load Persistent Server State + Connect SSE Stream
+  // Initialize Firebase auth; load private state only after Google sign-in
   useEffect(() => {
     const unsubscribeAuth = initAuth(
       (authedUser, token) => {
@@ -167,7 +167,6 @@ export default function App() {
 
     return () => {
       unsubscribeAuth();
-      evtSource.close();
     };
   }, []);
 
