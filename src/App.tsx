@@ -1,3 +1,4 @@
+import { apiFetch } from './services/apiFetch';
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -121,7 +122,7 @@ export default function App() {
     permissions: string[];
   }) => {
     try {
-      const res = await fetch('/api/team/invite', {
+      const res = await apiFetch('/api/team/invite', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(member),
@@ -137,7 +138,7 @@ export default function App() {
 
   const persistWorkspaceState = async (next: Partial<WorkspaceState>) => {
     try {
-      const res = await fetch('/api/state', {
+      const res = await apiFetch('/api/state', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(next),
@@ -164,48 +165,48 @@ export default function App() {
       }
     );
 
-    fetch('/api/state')
-      .then((r) => r.json())
-      .then((data: WorkspaceState) => {
-        applyServerState(data);
-        const params = new URLSearchParams(window.location.search);
-        const chk = params.get('checkout_invoice');
-        if (chk) {
-          setCheckoutInvoiceId(chk);
-        }
-      })
-      .catch((err) => console.error('Error loading workspace state:', err))
-      .finally(() => setIsLoadingState(false));
-
-    // Real-time Server-Sent Events subscription for instant incoming lead, open, and payment alerts
-    const evtSource = new EventSource('/api/events');
-    evtSource.onmessage = (event) => {
-      try {
-        const parsed = JSON.parse(event.data);
-        if (parsed.type === 'notification' && parsed.payload) {
-          if (parsed.payload.state) {
-            applyServerState(parsed.payload.state);
-          }
-          if (parsed.payload.notification) {
-            setActiveToast(parsed.payload.notification);
-          }
-        }
-      } catch {
-        // ignore heartbeat
-      }
-    };
-
     return () => {
       unsubscribeAuth();
       evtSource.close();
     };
   }, []);
 
+  // Authenticated workspace refresh; never subscribe to private state anonymously.
+  useEffect(() => {
+    if (!accessToken) {
+      setIsLoadingState(false);
+      return;
+    }
+    let active = true;
+    const refresh = async () => {
+      try {
+        const response = await apiFetch('/api/state');
+        if (!response.ok) throw new Error(`Workspace access denied (${response.status})`);
+        const state: WorkspaceState = await response.json();
+        if (active) {
+          applyServerState(state);
+          const checkout = new URLSearchParams(window.location.search).get('checkout_invoice');
+          if (checkout) setCheckoutInvoiceId(checkout);
+        }
+      } catch (error) {
+        console.error('Workspace loading failed:', error);
+      } finally {
+        if (active) setIsLoadingState(false);
+      }
+    };
+    void refresh();
+    const interval = window.setInterval(refresh, 15000);
+    return () => {
+      active = false;
+      clearInterval(interval);
+    };
+  }, [accessToken]);
+
   // Periodic background Gmail reply sync when authenticated
   useEffect(() => {
     if (!accessToken) return;
     const interval = setInterval(() => {
-      fetch('/api/gmail/sync', {
+      apiFetch('/api/gmail/sync', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -254,7 +255,7 @@ export default function App() {
     }
     setIsSyncingGmail(true);
     try {
-      const res = await fetch('/api/gmail/sync', {
+      const res = await apiFetch('/api/gmail/sync', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -410,18 +411,11 @@ export default function App() {
               <button
                 type="button"
                 onClick={async () => {
-                  const res = await fetch(
-                    `/api/invoices/${encodeURIComponent(checkoutInvoice.id)}/pay`,
-                    { method: 'POST' }
-                  );
-                  const data = await res.json();
-                  if (res.ok && data.state) {
-                    applyServerState(data.state);
-                  }
+                  window.alert('Online payment is unavailable until a verified payment processor is connected. Contact Aetheris for secure payment instructions.');
                 }}
                 className="w-full py-2.5 px-4 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-sm"
               >
-                Authorize & Pay ${checkoutInvoice.amount.toLocaleString()}.00
+                Payment processing unavailable
               </button>
             )}
           </div>
