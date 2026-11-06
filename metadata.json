@@ -1,0 +1,6 @@
+{
+  "name": "Cadence — Autonomous Outbound & ICP Intelligence Workbench",
+  "description": "Minimalist outbound email intelligence platform with persona-driven template synthesis, live web ICP discovery, automated single or timed follow-up handling, real-time lead notifications, conversion analytics, and integrated billing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

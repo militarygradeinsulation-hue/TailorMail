@@ -1,0 +1,506 @@
+{
+  "businessContext": {
+    "companyName": "Aetheris Technology",
+    "productName": "Decision-Friction Diagnostic / Golden Report",
+    "valueProposition": "We diagnose where cost, cash, and momentum disappear across disconnected operational handoffs before companies spend money on unnecessary software. We deliver an evidence-backed exception map and an owner-approved decision queue.",
+    "targetIndustries": "US privately held businesses ($5M–$75M revenue, 25–300 employees): A1 Precision & Contract Manufacturing (CNC, fabrication, precision parts), A2 Multi-Stage Engineering & IT Services, A3 Field & Specialty Trades.",
+    "idealBuyerRoles": "Founder, CEO, President, COO (economic buyers); CFO & Controller (sponsors); VP Operations & Plant GM (champions).",
+    "keyDifferentiators": "Not generic slide-deck consulting or AI hype. We map observable handoffs (quote-to-order, estimate-to-cash, revenue-to-delivery) with concrete timestamps, exception counts, and verified root-cause hypotheses.",
+    "pricingSummary": "Executive Friction Preview (Free invitation); Golden Diagnostic ($4,500–$12,500 test range; standard $6,500); Implementation Sprint ($8,000–$25,000); Ongoing Operating Intelligence Retainer ($1,500–$5,000/mo)."
+  },
+  "personas": [
+    {
+      "id": "persona-joseph-toney",
+      "name": "Joseph Toney — Founder & Systems Diagnostician",
+      "archetype": "Founder of Aetheris Technology | Architect of Mindprint | Business Intelligence Systems Researcher",
+      "sourceFileName": "joseph_toney_professional_identity.md",
+      "rawSample": "# JOSEPH TONEY\\n## Founder of Aetheris Technology | Architect of Mindprint | Business Intelligence Systems Researcher\\n\\n**Founder & CEO:** Aetheris Technology  \\n**Primary Technology:** Mindprint by Aetheris  \\n**Specialization:** Artificial Intelligence, Business Forensics, Human Intelligence Mapping, Organizational Research, Decision Systems, Operational Diagnostics, and Business Systems Architecture\\n\\n**Location:** Greater Indianapolis, Indiana, USA  \\n**Business:** https://aetheris.technology  \\n**Research Platform:** https://businessforensics.tech  \\n**Mindprint:** https://mindsteal.lovable.app\\n\\n1. Executive Professional Identity\\nJoseph Toney is the founder of Aetheris Technology and the architect of an interconnected business research and intelligence ecosystem designed to investigate how people, decisions, processes, and technology shape organizational performance.\\nHis work is based on a central premise: A business is a reflection of the decisions, relationships, information, and systems operating inside it.\\nTraditional business analysis frequently examines these elements separately. Marketing measures leads. Sales measures conversions. Operations measures productivity. Finance measures costs. Human resources measures employees. Joseph's approach examines what happens between those functions.\\n\\n2. Aetheris Technology\\nPositioning: We Build Intelligence Systems for Businesses. Find the friction first. Business friction + Human context = Predictable Outcomes.\\n\\n3. The Seven-Step Forensic Framework\\nScan: Collect and examine available organizational evidence.\\nScore: Establish a baseline for the observed operational conditions.\\nName: Identify the business friction and distinguish the symptom from the likely root cause.\\nEvidence: Document the records and observations that support each conclusion.\\nDollarize: Calculate or estimate financial consequences only where supporting information and assumptions allow.\\nFix: Design corrections that address the identified cause.\\nTrack: Measure changes in operational performance and results.\\n\\n4. Golden Report: 14-chapter business research and diagnostics system identifying revenue leakage and handoff friction.\\n\\n5. Mindprint Technology: The Six Intelligence Lenses (Communication, Thinking, Decisions, Trust, Priorities, Leadership), Thinking Core, Mind Map, and Interactive 3D Brain.",
+      "linguisticSignature": {
+        "cadence": "Grounded, forensic, systems-analytical, anti-fluff, evidence-first, focusing on interfaces between departments.",
+        "openingStyle": "Direct operational premise framing (e.g. A business is a reflection of the decisions, relationships, and systems operating inside it. When examining quote-to-order or sales-to-delivery handoffs...)",
+        "signOff": "Respectfully,\\nJoseph Toney\\nFounder & CEO, Aetheris Technology\\nArchitect of Mindprint\\nhttps://aetheris.technology",
+        "vocabularyTraits": [
+          "find the friction first",
+          "business forensics",
+          "golden report",
+          "handoff breakdown",
+          "symptom vs root cause",
+          "system of record vs decision accountability",
+          "dollarize exposure",
+          "human context",
+          "traceable evidence",
+          "decision friction",
+          "departmental handoff"
+        ]
+      },
+      "updatedAt": "2026-11-06"
+    },
+    {
+      "id": "persona-aetheris-owner",
+      "name": "Operator-Owner Voice (Aetheris)",
+      "archetype": "Grounded Operator & Operational Diagnostician",
+      "sourceFileName": "aetheris_prime_buyer_appendix_a.txt",
+      "rawSample": "In operations where quoting, scheduling and purchasing live across separate tools, the cost is rarely in the tools alone. It appears between the quote, work order, material decision and invoice. We trace those handoffs, measure exceptions, and separate observable facts from assumptions before recommending any systems change.",
+      "linguisticSignature": {
+        "cadence": "Direct, concise, evidence-driven, zero consulting jargon or AI hype.",
+        "openingStyle": "Clear, industry-specific operational observation on handoff friction.",
+        "signOff": "Respectfully,\\nJoseph Toney\\nAetheris Technology",
+        "vocabularyTraits": [
+          "handoff friction",
+          "quote-to-cash",
+          "exception rate",
+          "system of record vs decision accountability",
+          "decision friction",
+          "root cause hypothesis",
+          "materiality"
+        ]
+      },
+      "updatedAt": "2026-11-06"
+    },
+    {
+      "id": "persona-mindprint-adviser",
+      "name": "Executive Adviser Voice (Mindprint)",
+      "archetype": "Inquisitive & Evidence-Linked Principal",
+      "sourceFileName": "mindprint_repeat_adviser_appendix_a.txt",
+      "rawSample": "Before a consequential conversation or partnership decision, you want to see what is actually evidenced about a leader's professional approach versus what remains assumption. Mindprint organizes cited public statements into structured hypotheses and the exact questions to test them.",
+      "linguisticSignature": {
+        "cadence": "Inquisitive, respectful of boundaries, highly structured, evidence-oriented.",
+        "openingStyle": "Specific decision framing (e.g., Before our upcoming discussion regarding operational alignment...)",
+        "signOff": "Best regards,\\nMindprint Advisory by Aetheris",
+        "vocabularyTraits": [
+          "evidence-linked",
+          "grounded observation",
+          "questions to test",
+          "decision preferences",
+          "boundaries & unknowns",
+          "working hypothesis"
+        ]
+      },
+      "updatedAt": "2026-11-06"
+    },
+    {
+      "id": "persona-golden-report",
+      "name": "Systems Diagnostic Lead (Golden Report)",
+      "archetype": "Forensic Operations Auditor",
+      "sourceFileName": "golden_report_methodology.txt",
+      "rawSample": "Our diagnostic begins with a bounded scope: inquiry to order or estimate to invoice. We document the original source of each friction point, measure baseline cycle time and rework drop-off, and present three prioritized owner-approved interventions rather than fifty speculative problems.",
+      "linguisticSignature": {
+        "cadence": "Forensic, systematic, analytical, high-accountability.",
+        "openingStyle": "Targeted diagnostic hypothesis (e.g., Looking at your multi-site operational workflow between dispatch and invoicing...)",
+        "signOff": "In partnership,\\nAetheris Diagnostic Group",
+        "vocabularyTraits": [
+          "evidence ledger",
+          "rework count",
+          "bounded exposure",
+          "owner assignment",
+          "intervention priority",
+          "baseline cycle time"
+        ]
+      },
+      "updatedAt": "2026-11-06"
+    }
+  ],
+  "activePersonaId": "persona-joseph-toney",
+  "templates": [
+    {
+      "id": "tpl-a1-mfg",
+      "title": "A1: Precision Mfg — Quote-to-Order Friction Diagnostic",
+      "category": "Cold Outbound",
+      "subjectLine": "{{company}}'s quote-to-order handoff & operational exceptions",
+      "body": "Hi {{firstName}},\n\nThe quote-to-order handoff is where delivery complexity often first becomes a cost center. In shops where quoting, scheduling and purchasing live across separate tools, the cost is rarely in the tools alone—it appears between the quote, work order, material decision and invoice.\n\nAt Aetheris Technology, we examine the observable signals that show when approvals, material decisions and schedule changes stop lining up. We map those handoffs and separate documented failures from assumptions before anyone buys another system.\n\nWould you be open to a 15-minute review of your current quote-to-cash handoff to see where capacity or margin might be slipping?\n\nRespectfully,\nJoseph Toney\nAetheris Technology",
+      "personaId": "persona-aetheris-owner",
+      "sentCount": 14,
+      "openCount": 11,
+      "replyCount": 6
+    },
+    {
+      "id": "tpl-a2-services",
+      "title": "A2: Engineering/IT Services — Revenue-to-Delivery Scope",
+      "category": "Executive Intro",
+      "subjectLine": "Bridging the sales promise vs delivery scope at {{company}}",
+      "body": "Hi {{firstName}},\n\nSales can close clean deals while delivery inherits unclear scope. In multi-stage professional and engineering firms, utilization gaps and margin leaks usually occur right at the handoff between signed commitment, staffing, and billed work.\n\nAetheris runs targeted friction diagnostics to trace the exact transition between commitment and delivery, giving your operating team an owner-approved decision queue.\n\nAre you open to reviewing a one-page sample friction map for multi-stage delivery firms?\n\nBest,\nJoseph Toney\nAetheris Technology",
+      "personaId": "persona-aetheris-owner",
+      "sentCount": 9,
+      "openCount": 7,
+      "replyCount": 3
+    },
+    {
+      "id": "tpl-a3-trades",
+      "title": "A3: Field Trades — Estimate-to-Cash & Work-Order Handoffs",
+      "category": "Cold Outbound",
+      "subjectLine": "Estimate-to-cash workflow and work-order rework at {{company}}",
+      "body": "Hi {{firstName}},\n\nA profitable job can still lose money between estimating, dispatch, and billing. When field records, inventory, and job costing live in spreadsheets alongside your core dispatch tool, unbilled change orders and rework accumulate quickly.\n\nOur work at Aetheris maps where ownership and records diverge before proposing any software overhaul.\n\nCould we share a 10-minute baseline breakdown of where field service handoffs commonly leak margin?\n\nBest regards,\nJoseph Toney\nAetheris Technology",
+      "personaId": "persona-aetheris-owner",
+      "sentCount": 8,
+      "openCount": 6,
+      "replyCount": 3
+    },
+    {
+      "id": "tpl-mindprint-briefing",
+      "title": "Mindprint: Executive Pre-Meeting Evidence Briefing ($49/$99)",
+      "category": "Executive Intro",
+      "subjectLine": "Pre-meeting evidence briefing for upcoming {{company}} decisions",
+      "body": "Hi {{firstName}},\n\nA useful briefing should separate what an executive has actually stated publicly from what we assume they mean. Before a consequential partnership meeting or client onboarding, Mindprint turns public professional context into a cited, structured briefing with the exact questions to test your assumptions.\n\nWe provide decision clarity without pretending to read minds or inferring private psychology.\n\nWould you like a sample 1-page evidence briefing on your upcoming key stakeholder?\n\nBest regards,\nMindprint Advisory by Aetheris",
+      "personaId": "persona-mindprint-adviser",
+      "sentCount": 18,
+      "openCount": 15,
+      "replyCount": 8
+    },
+    {
+      "id": "tpl-golden-diag-invoice",
+      "title": "Aetheris: Golden Diagnostic Agreement & Retainer ($6,500)",
+      "category": "Invoice & Closing",
+      "subjectLine": "Aetheris Golden Diagnostic Agreement — {{company}}",
+      "body": "Hi {{firstName}},\n\nFollowing our review of your quote-to-cash handoffs, here is the formal agreement for the Aetheris Golden Diagnostic ($6,500 bounded engagement).\n\nScope of Delivery:\n1. 2-to-4 week forensic process walk-through of inquiry-to-order and estimate-to-invoice.\n2. Validated evidence ledger classifying handoffs as confirmed, probable, or unknown.\n3. Top 3 owner-approved interventions with baseline cycle time and exception metrics.\n\nClick the secure payment link below to initiate the diagnostic:\n{{paymentLink}}\n\nRespectfully,\nJoseph Toney\nAetheris Technology",
+      "personaId": "persona-golden-report",
+      "sentCount": 5,
+      "openCount": 5,
+      "replyCount": 4
+    },
+    {
+      "id": "tpl-jt-mfg-quote",
+      "title": "Aetheris (Joseph Toney) — Precision Mfg Quote-to-Order Friction",
+      "category": "Cold Outbound",
+      "subjectLine": "{{company}}'s quote-to-order handoff and operational friction",
+      "body": "Hi {{firstName}},\n\nA business is a reflection of the decisions, relationships, and systems operating inside it. In precision manufacturing shops where quoting, scheduling, and purchasing live across separate tools, the cost is rarely in the tools alone—it appears at the handoff between the quote, the work order, and the invoice.\n\nAt Aetheris Technology, we developed a forensic methodology to find the friction first. We map observable handoff breakdowns, separate symptoms from root causes, and measure exception rates before anyone buys another system.\n\nWould you be open to a 15-minute review of your current quote-to-cash workflow to see where capacity or margin may be slipping?\n\nRespectfully,\nJoseph Toney\nFounder & CEO, Aetheris Technology\nArchitect of Mindprint\nhttps://aetheris.technology",
+      "personaId": "persona-joseph-toney",
+      "sentCount": 21,
+      "openCount": 18,
+      "replyCount": 9
+    },
+    {
+      "id": "tpl-jt-services-scope",
+      "title": "Aetheris (Joseph Toney) — Engineering/IT Revenue-to-Delivery Scope",
+      "category": "Executive Intro",
+      "subjectLine": "Bridging the sales promise vs delivery scope at {{company}}",
+      "body": "Hi {{firstName}},\n\nTraditional business reporting evaluates individual departments instead of the relationships connecting them. Sales can close clean deals while delivery inherits unclear scope, leading to utilization gaps and unbilled rework.\n\nThrough Aetheris Business Forensics and the Golden Report framework, we investigate the exact handoff between signed commitment and delivery, providing an owner-approved decision queue.\n\nCould I share a 1-page sample friction map examining how multi-stage service firms isolate these handoff breakdowns?\n\nRespectfully,\nJoseph Toney\nFounder & CEO, Aetheris Technology\nhttps://aetheris.technology",
+      "personaId": "persona-joseph-toney",
+      "sentCount": 16,
+      "openCount": 13,
+      "replyCount": 7
+    },
+    {
+      "id": "tpl-jt-mindprint-briefing",
+      "title": "Mindprint (Joseph Toney) — Pre-Meeting Evidence Briefing ($49/$99)",
+      "category": "Executive Intro",
+      "subjectLine": "Evidence-linked briefing for upcoming {{company}} decisions",
+      "body": "Hi {{firstName}},\n\nWhat happens when an organization understands its systems, but does not understand how the people operating those systems communicate, prioritize information, or make decisions?\n\nMindprint by Aetheris organizes publicly observable professional material across six intelligence lenses (Communication, Thinking, Decisions, Trust, Priorities, Leadership). It turns public context into a structured, cited briefing with the exact questions to test assumptions before consequential meetings.\n\nWe provide decision clarity without claiming mind-reading or psychometric evaluation.\n\nWould you like a sample 1-page evidence briefing on your upcoming key stakeholder?\n\nBest regards,\nJoseph Toney\nArchitect of Mindprint | Founder, Aetheris Technology\nhttps://mindsteal.lovable.app",
+      "personaId": "persona-joseph-toney",
+      "sentCount": 24,
+      "openCount": 20,
+      "replyCount": 11
+    },
+    {
+      "id": "tpl-jt-golden-diag",
+      "title": "Aetheris (Joseph Toney) — Golden Diagnostic Agreement ($6,500)",
+      "category": "Invoice & Closing",
+      "subjectLine": "Aetheris Golden Diagnostic Agreement — {{company}}",
+      "body": "Hi {{firstName}},\n\nFollowing our initial friction review, here is the agreement for the Aetheris Golden Diagnostic ($6,500 bounded engagement).\n\nDeliverables:\n1. 2-to-4 week forensic process walk-through of inquiry-to-order and estimate-to-invoice.\n2. Validated evidence ledger distinguishing confirmed observations from hypotheses.\n3. Top 3 owner-approved corrective actions with baseline cycle times and exception tracking.\n\nClick the secure link below to initiate the diagnostic:\n{{paymentLink}}\n\nRespectfully,\nJoseph Toney\nFounder & CEO, Aetheris Technology\nhttps://aetheris.technology",
+      "personaId": "persona-joseph-toney",
+      "sentCount": 8,
+      "openCount": 8,
+      "replyCount": 6
+    },
+    {
+      "id": "tpl-jt-sales-qa",
+      "title": "Aetheris (Joseph Toney) — Sales Q&A Diagnostic Scope & Remote Audit",
+      "category": "Sales Q&A Response",
+      "subjectLine": "Re: {{subject}}",
+      "body": "Hi {{firstName}},\n\nThank you for the question regarding our diagnostic methodology.\n\nOur forensic investigation begins with read-only access to existing workflow records—tracing timestamps between order inquiry, estimating, work-order release, and final billing. We don't disrupt your daily floor operations with endless meetings; instead, we document where data is duplicated, delayed, or misinterpreted across systems.\n\nWe then walk through the findings with your leadership sponsor to agree on the root cause before proposing any workflow correction.\n\nHappy to hop on a brief call or review an anonymized process walk-through if helpful.\n\nRespectfully,\nJoseph Toney\nFounder & CEO, Aetheris Technology\nhttps://aetheris.technology",
+      "personaId": "persona-joseph-toney",
+      "sentCount": 12,
+      "openCount": 11,
+      "replyCount": 8
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead-vance-mfg",
+      "fullName": "Marcus Vance",
+      "role": "Founder & President",
+      "company": "Vance Precision Machining",
+      "companyDomain": "vancemachining.com",
+      "email": "mvance@vancemachining.com",
+      "location": "Fort Wayne, IN",
+      "latitude": 41.0793,
+      "longitude": -85.1394,
+      "matchScore": 94,
+      "matchType": "Web Scan",
+      "buyingSignal": "Active Epicor ERP migration stalled; hiring for Operations Excellence Lead due to 4-day quoting delays and aerospace RFQ backlog.",
+      "icpFitRationale": "A1 Prime Match: US precision CNC manufacturing, 65 employees, ~$18M rev. Quoting, scheduling, and purchasing live in separate silos resulting in margin leakage between quote and work order.",
+      "painPoints": [
+        "4-day RFQ turnaround vs 24hr market standard",
+        "Shop-floor scheduling overrides by sales",
+        "Spreadsheet workarounds post-ERP rollout"
+      ],
+      "groundingSources": [
+        {
+          "uri": "https://vancemachining.com/careers",
+          "title": "Vance Precision Careers - Operations Excellence Lead"
+        },
+        {
+          "uri": "https://indianatooling.org/vance",
+          "title": "Indiana Precision Tooling Network"
+        }
+      ],
+      "status": "Question Received",
+      "cadenceMode": "timed_sequence",
+      "timedIntervalDays": 3,
+      "autoHandleQuestions": true,
+      "tailoredSubject": "Vance Precision's quote-to-order handoff & operational exceptions",
+      "tailoredBody": "Hi Marcus,\n\nThe quote-to-order handoff is where delivery complexity often first becomes a cost center. In shops where quoting, scheduling and purchasing live across separate tools, the cost is rarely in the tools alone—it appears between the quote, work order, material decision and invoice.\n\nAt Aetheris Technology, we examine the observable signals that show when approvals, material decisions and schedule changes stop lining up. We map those handoffs and separate documented failures from assumptions before anyone buys another system.\n\nWould you be open to a 15-minute review of your current quote-to-cash handoff to see where capacity or margin might be slipping?\n\nRespectfully,\nJoseph Toney\nAetheris Technology",
+      "activeTemplateId": "tpl-a1-mfg",
+      "followUpSteps": [],
+      "thread": [],
+      "createdAt": "2026-11-06T19:58:01.622Z",
+      "metrics": {
+        "sentCount": 1,
+        "opens": 3,
+        "clicks": 1,
+        "replies": 1,
+        "dealValue": 12500
+      }
+    },
+    {
+      "id": "lead-apex-fab",
+      "fullName": "Elena Rostova",
+      "role": "Chief Operating Officer",
+      "company": "Apex Industrial Fabricators",
+      "companyDomain": "apexfabrication.com",
+      "email": "erostova@apexfabrication.com",
+      "location": "Indianapolis, IN",
+      "latitude": 39.7684,
+      "longitude": -86.1581,
+      "matchScore": 91,
+      "matchType": "Web Scan",
+      "buyingSignal": "Added second laser-cutting cell; COO stated on manufacturing panel that expedited material purchases are eroding gross margin.",
+      "icpFitRationale": "A1 Prime Match: Contract fabrication, 95 employees, $26M rev. Multiple production cells with no unified cross-department customer journey owner.",
+      "painPoints": [
+        "Expedited material premiums up 18%",
+        "Quote-to-job variance in job costing",
+        "Manual email approval loops between estimating and plant manager"
+      ],
+      "groundingSources": [
+        {
+          "uri": "https://midwestmfgjournal.com/apex-2026",
+          "title": "Midwest Manufacturing Journal - Apex Expansion"
+        },
+        {
+          "uri": "https://apexfabrication.com/leadership",
+          "title": "Apex Fabrication Leadership"
+        }
+      ],
+      "status": "Active Sequence",
+      "cadenceMode": "timed_sequence",
+      "timedIntervalDays": 3,
+      "autoHandleQuestions": true,
+      "tailoredSubject": "Apex Industrial's quote-to-order handoff & operational exceptions",
+      "tailoredBody": "Hi Elena,\n\nIn facilities scaling multiple production cells, handoffs between sales commitments, job engineering, and shop-floor dispatch often create quiet margin leaks.\n\nAetheris maps the quote-to-cash friction points with concrete timestamps and exception counts so leadership can fix the root bottleneck before hiring more administrators.\n\nCould we review a brief diagnostic map of where industrial fabricators typically isolate these variances?\n\nRespectfully,\nJoseph Toney\nAetheris Technology",
+      "activeTemplateId": "tpl-a1-mfg",
+      "followUpSteps": [],
+      "thread": [],
+      "createdAt": "2026-11-06T19:58:01.622Z",
+      "metrics": {
+        "sentCount": 2,
+        "opens": 4,
+        "clicks": 2,
+        "replies": 0,
+        "dealValue": 15000
+      }
+    },
+    {
+      "id": "lead-sterling-eng",
+      "fullName": "David Sterling",
+      "role": "Chief Executive Officer",
+      "company": "Sterling Applied Systems",
+      "companyDomain": "sterlingapplied.com",
+      "email": "dsterling@sterlingapplied.com",
+      "location": "Columbus, OH",
+      "latitude": 39.9612,
+      "longitude": -82.9988,
+      "matchScore": 88,
+      "matchType": "Intelligence Match",
+      "buyingSignal": "Recently acquired a 15-person specialty controls firm; engineering delivery teams reporting contradictory scope from legacy sales contracts.",
+      "icpFitRationale": "A2 Match: Multi-stage engineering & systems integration firm, 52 employees, $15M rev. Post-acquisition process friction between sales promise and technical delivery.",
+      "painPoints": [
+        "Sales commitment vs delivery scope misalignment",
+        "Utilization drop during cross-team handoffs",
+        "Inconsistent job costing across acquired entities"
+      ],
+      "groundingSources": [
+        {
+          "uri": "https://sterlingapplied.com/news",
+          "title": "Sterling Systems Press Release - Acquisition of Controls Group"
+        },
+        {
+          "uri": "https://enr.com/sterling-expansion",
+          "title": "Engineering News Record Midwest"
+        }
+      ],
+      "status": "Tailored",
+      "cadenceMode": "timed_sequence",
+      "timedIntervalDays": 3,
+      "autoHandleQuestions": true,
+      "tailoredSubject": "Bridging the sales promise vs delivery scope at Sterling Applied",
+      "tailoredBody": "Hi David,\n\nSales can close clean deals while delivery inherits unclear scope. In multi-stage engineering firms integrating acquired capabilities, utilization gaps usually occur right at the handoff between signed commitment, staffing, and billed work.\n\nAetheris runs targeted friction diagnostics to trace the exact transition between commitment and delivery, giving your operating team an owner-approved decision queue.\n\nAre you open to reviewing a one-page sample friction map for multi-stage delivery firms?\n\nBest,\nJoseph Toney\nAetheris Technology",
+      "activeTemplateId": "tpl-a2-services",
+      "followUpSteps": [],
+      "thread": [],
+      "createdAt": "2026-11-06T19:58:01.622Z",
+      "metrics": {
+        "sentCount": 0,
+        "opens": 0,
+        "clicks": 0,
+        "replies": 0,
+        "dealValue": 18000
+      }
+    },
+    {
+      "id": "lead-cascade-advisory",
+      "fullName": "Sarah Jenkins",
+      "role": "Managing Partner",
+      "company": "Cascade Executive Advisory",
+      "companyDomain": "cascadeadvisory.com",
+      "email": "sjenkins@cascadeadvisory.com",
+      "location": "Chicago, IL",
+      "latitude": 41.8781,
+      "longitude": -87.6298,
+      "matchScore": 87,
+      "matchType": "Intelligence Match",
+      "buyingSignal": "Advisory practice onboarding 4 new partners; managing partner published piece on pre-meeting executive preparation and alignment.",
+      "icpFitRationale": "Mindprint Prime Match: Boutique leadership and executive advisory firm with 28 knowledge workers. High-stakes partner briefings and C-suite client onboarding.",
+      "painPoints": [
+        "Hours spent manually researching executive backgrounds",
+        "Subjective assumptions before critical stakeholder negotiations",
+        "Inconsistent briefing format across advisory team"
+      ],
+      "groundingSources": [
+        {
+          "uri": "https://cascadeadvisory.com/team",
+          "title": "Cascade Advisory - Practice Leadership"
+        },
+        {
+          "uri": "https://chicagobusiness.com/consulting-trends",
+          "title": "Crain's Chicago Business - Executive Consulting"
+        }
+      ],
+      "status": "Converted",
+      "cadenceMode": "one_touch",
+      "timedIntervalDays": 2,
+      "autoHandleQuestions": false,
+      "tailoredSubject": "Pre-meeting evidence briefing for upcoming Cascade client sessions",
+      "tailoredBody": "Hi Sarah,\n\nA useful briefing should separate what an executive has actually stated publicly from what we assume they mean. Mindprint turns public professional context into a cited, structured briefing with the exact questions to test your assumptions before high-stakes client sessions.\n\nWe provide decision clarity without pretending to read minds or inferring private psychology.\n\nWould you like a sample 1-page evidence briefing on your upcoming key stakeholder?\n\nBest regards,\nMindprint Advisory by Aetheris",
+      "activeTemplateId": "tpl-mindprint-briefing",
+      "followUpSteps": [],
+      "thread": [],
+      "createdAt": "2026-11-06T19:58:01.622Z",
+      "metrics": {
+        "sentCount": 1,
+        "opens": 2,
+        "clicks": 1,
+        "replies": 1,
+        "dealValue": 6500
+      }
+    }
+  ],
+  "invoices": [
+    {
+      "id": "inv-diag-001",
+      "invoiceNumber": "INV-2026-0881",
+      "leadId": "lead-vance-mfg",
+      "clientName": "Marcus Vance",
+      "company": "Vance Precision Machining",
+      "email": "mvance@vancemachining.com",
+      "planOrService": "Aetheris Golden Diagnostic (2-4 Week Forensic Exception Mapping)",
+      "amount": 6500,
+      "billingCycle": "One-Time",
+      "gateway": "Stripe Express",
+      "status": "Pending Auto-Charge",
+      "issuedDate": "2026-11-06",
+      "dueDate": "2026-11-20",
+      "autoRemind": true
+    },
+    {
+      "id": "inv-mindprint-002",
+      "invoiceNumber": "INV-2026-0882",
+      "leadId": "lead-cascade-advisory",
+      "clientName": "Sarah Jenkins",
+      "company": "Cascade Executive Advisory",
+      "email": "sjenkins@cascadeadvisory.com",
+      "planOrService": "Mindprint Intel Edition & Advisory Pilot Package",
+      "amount": 4900,
+      "billingCycle": "Monthly Auto-Bill",
+      "gateway": "Stripe Express",
+      "status": "Paid",
+      "issuedDate": "2026-11-01",
+      "dueDate": "2026-11-01",
+      "autoRemind": true
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notif-001",
+      "leadId": "lead-vance-mfg",
+      "leadName": "Marcus Vance",
+      "company": "Vance Precision Machining",
+      "role": "Founder & President",
+      "eventType": "Sales Question",
+      "summary": "Marcus Vance opened your quote-to-order diagnostic message and asked: \"How long does your diagnostic team need on-site vs remote data review?\"",
+      "timestamp": "2026-11-06T11:45:00Z",
+      "unread": true
+    },
+    {
+      "id": "notif-002",
+      "leadId": "lead-cascade-advisory",
+      "leadName": "Sarah Jenkins",
+      "company": "Cascade Executive Advisory",
+      "role": "Managing Partner",
+      "eventType": "Invoice Paid",
+      "summary": "Sarah Jenkins completed Stripe payment of $4,900 for the Mindprint Advisory Pilot Package.",
+      "timestamp": "2026-11-06T10:15:00Z",
+      "unread": false
+    },
+    {
+      "id": "notif-003",
+      "leadId": "lead-apex-fab",
+      "leadName": "Elena Rostova",
+      "company": "Apex Industrial Fabricators",
+      "role": "Chief Operating Officer",
+      "eventType": "Email Opened",
+      "summary": "Elena Rostova opened your email on quote-to-cash friction (Indianapolis, IN).",
+      "timestamp": "2026-11-06T09:30:00Z",
+      "unread": true
+    }
+  ],
+  "teamMembers": [
+    {
+      "id": "tm-owner",
+      "email": "militarygradeinsulation@gmail.com",
+      "name": "Military Grade Insulation (Owner)",
+      "role": "Owner",
+      "status": "Connected",
+      "addedAt": "2026-11-06",
+      "permissions": [
+        "outbound_dispatch",
+        "icp_discovery",
+        "sales_qa",
+        "billing",
+        "admin"
+      ]
+    },
+    {
+      "id": "tm-architect",
+      "email": "aisystemsarchitect@gmail.com",
+      "name": "AI Systems Architect",
+      "role": "Architect",
+      "status": "Authorized",
+      "addedAt": "2026-11-06",
+      "permissions": [
+        "outbound_dispatch",
+        "icp_discovery",
+        "sales_qa",
+        "billing"
+      ]
+    }
+  ]
+}
