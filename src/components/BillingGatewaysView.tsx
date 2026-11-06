@@ -1,3 +1,4 @@
+import { apiFetch } from '../services/apiFetch';
 import React, { useState } from 'react';
 import {
   Check,
@@ -91,19 +92,8 @@ export const BillingGatewaysView: React.FC<BillingGatewaysViewProps> = ({
     setShowNewInvoiceModal(false);
   };
 
-  const handleSettleInvoice = async (inv: InvoiceRecord) => {
-    setSettlingId(inv.id);
-    try {
-      const res = await fetch(`/api/invoices/${encodeURIComponent(inv.id)}/pay`, {
-        method: 'POST',
-      });
-      const data = await res.json();
-      if (res.ok && data.state) {
-        onSyncState(data.state);
-      }
-    } finally {
-      setSettlingId(null);
-    }
+  const handleSettleInvoice = async (_inv: InvoiceRecord) => {
+    window.alert('Payment settlement is disabled until a verified payment gateway is connected.');
   };
 
   const getCheckoutUrl = (inv: InvoiceRecord) => {
@@ -124,7 +114,7 @@ export const BillingGatewaysView: React.FC<BillingGatewaysViewProps> = ({
       const subject = `Invoice ${invoiceToEmail.invoiceNumber} — ${invoiceToEmail.planOrService}`;
       const body = `Hi ${invoiceToEmail.clientName.split(' ')[0]},\n\nPlease find your invoice details below:\n\nInvoice Number: ${invoiceToEmail.invoiceNumber}\nScope: ${invoiceToEmail.planOrService}\nAmount Due: $${invoiceToEmail.amount.toLocaleString()}.00 (${invoiceToEmail.billingCycle})\nPayment Gateway: ${invoiceToEmail.gateway}\nDue Date: ${invoiceToEmail.dueDate}\n\nComplete Instant Settlement:\n${checkoutUrl}\n\nThank you for your business.`;
 
-      const res = await fetch('/api/gmail/send', {
+      const res = await apiFetch('/api/gmail/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
